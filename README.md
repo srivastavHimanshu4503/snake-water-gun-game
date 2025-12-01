@@ -4,7 +4,10 @@
 [![GitHub Repo](https://img.shields.io/badge/Source_Code-GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/srivastavHimanshu4503/snake-water-gun-game)
 
 A simple and fun **Snake–Water–Gun** web game where you play against the computer through a clean web interface.
+---
+
 **🔗 Live URL:** https://snake-water-gungame.onrender.com/
+
 ---
 
 ## 🚀 Tech Stack
