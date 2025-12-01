@@ -5,6 +5,10 @@ import os
 app = Flask(__name__, static_folder="static", template_folder="templates")
 app.secret_key = os.environ.get("FLASK_SECRET_KEY", "change-this-in-prod")
 
+app.config["SESSION_COOKIE_SECURE"] = True
+app.config["SESSION_COOKIE_HTTPONLY"] = True
+app.config["SESSION_COOKIE_SAMESITE"] = "Lax"
+
 OPTIONS = ["Snake", "Water", "Gun"]
 
 # Add this helper function to your Python code
@@ -111,6 +115,3 @@ def play():
         response["game_over"] = False
 
     return jsonify(response)
-
-if __name__ == "__main__":
-    app.run(debug=True)
