@@ -2,7 +2,13 @@ from flask import Flask, render_template, request, jsonify, session
 import random
 import os
 
-app = Flask(__name__, static_folder="static", template_folder="templates")
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+app = Flask(
+    __name__,
+    template_folder=os.path.join(BASE_DIR, "templates"),
+    static_folder=os.path.join(BASE_DIR, "static")
+)
 app.secret_key = os.environ.get("FLASK_SECRET_KEY", "change-this-in-prod")
 
 app.config["SESSION_COOKIE_SECURE"] = True
@@ -71,11 +77,8 @@ def play():
     if choice.lower() not in ("snake", "water", "gun"):
         return jsonify({"status": "error", "message": "Choice must be one of 'Snake', 'Water', 'Gun'."}), 400
 
-    # Inside your /play route:
-    # Instead of: computer_choice = random.choice(["Snake", "Water", "Gun"])
-    # Use this:
     winning_move = get_winning_move(choice)
-    if random.random() < 0.7:
+    if random.random() <= 0.45:
         comp_choice = winning_move
     else:
         comp_choice = random.choice(["Snake", "Water", "Gun"])
