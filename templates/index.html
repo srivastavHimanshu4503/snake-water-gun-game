@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Snake • Water • Gun</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Outfit:wght@300;600&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+
+  <div class="game-console">
+    <header>
+      <h1>SNAKE <span class="vs">vs</span> WATER <span class="vs">vs</span> GUN</h1>
+      <div class="score-board">
+        <div class="score-item">
+          <span class="label">ATTEMPTS</span>
+          <span id="attempts" class="value">0</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="arena">
+      <div class="fighter player">
+        <div id="userIcon" class="fighter-icon">
+          <div class="placeholder">?</div>
+        </div>
+        <p>YOU</p>
+      </div>
+
+      <div class="versus-badge">VS</div>
+
+      <div class="fighter cpu">
+        <div id="cpuIcon" class="fighter-icon">
+          <div class="placeholder">?</div>
+        </div>
+        <p>CPU</p>
+      </div>
+    </div>
+
+    <div id="status" class="status-screen">INITIALIZING...</div>
+
+    <div class="controls">
+      <button id="startBtn" class="btn-main">START MATCH</button>
+      
+      <div id="choices" class="weapon-grid hidden">
+        <button class="weapon-card" data-choice="Snake">
+          <div class="card-inner">
+            <svg class="weapon-logo" viewBox="0 0 100 100">
+              <defs>
+                <linearGradient id="snakeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style="stop-color:#4ade80;stop-opacity:1" />
+                  <stop offset="100%" style="stop-color:#16a34a;stop-opacity:1" />
+                </linearGradient>
+              </defs>
+              <path fill="url(#snakeGrad)" d="M70,30 Q80,20 90,30 T90,50 Q80,60 70,50 T50,40 Q40,30 30,50 T20,80 L10,80 Q20,60 30,50 Q40,40 50,60 T70,70 Q80,60 90,50 T80,30 Z" />
+              <circle cx="75" cy="35" r="3" fill="yellow" />
+              <path d="M90,30 L95,25 L95,35 Z" fill="#ef4444" /> </svg>
+            <span>SNAKE</span>
+          </div>
+        </button>
+
+        <button class="weapon-card" data-choice="Water">
+          <div class="card-inner">
+            <svg class="weapon-logo" viewBox="0 0 100 100">
+              <defs>
+                <linearGradient id="waterGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" style="stop-color:#60a5fa;stop-opacity:1" />
+                  <stop offset="100%" style="stop-color:#2563eb;stop-opacity:1" />
+                </linearGradient>
+              </defs>
+              <path fill="url(#waterGrad)" d="M50,10 Q20,50 20,70 A30,30 0 0,0 80,70 Q80,50 50,10 Z" />
+              <path fill="rgba(255,255,255,0.3)" d="M35,60 Q30,70 40,75" stroke="white" stroke-width="3" stroke-linecap="round" />
+            </svg>
+            <span>WATER</span>
+          </div>
+        </button>
+
+        <button class="weapon-card" data-choice="Gun">
+          <div class="card-inner">
+            <svg class="weapon-logo" viewBox="0 0 100 100">
+              <defs>
+                <linearGradient id="gunGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style="stop-color:#94a3b8;stop-opacity:1" />
+                  <stop offset="100%" style="stop-color:#475569;stop-opacity:1" />
+                </linearGradient>
+              </defs>
+              <path fill="url(#gunGrad)" d="M10,60 L30,60 L35,40 L90,40 L90,20 L30,20 L20,40 L10,40 Z" /> <rect x="20" y="50" width="15" height="30" fill="#78350f" rx="5" /> <circle cx="35" cy="30" r="8" fill="#334155" /> </svg>
+            <span>GUN</span>
+          </div>
+        </button>
+      </div>
+    </div>
+
+    <div class="log-panel">
+      <h3>COMBAT LOG</h3>
+      <div id="history" class="log-content"></div>
+    </div>
+  </div>
+
+  <script src="/static/main.js"></script>
+</body>
+</html>

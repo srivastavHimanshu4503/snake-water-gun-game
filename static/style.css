@@ -1,0 +1,211 @@
+ :root {
+  --bg-dark: #0f172a;
+  --panel-bg: #1e293b;
+  --primary: #3b82f6;
+  --accent: #f59e0b;
+  --text: #f1f5f9;
+  --neon-glow: 0 0 20px rgba(59, 130, 246, 0.3);
+}
+
+body {
+  margin: 0;
+  font-family: 'Outfit', sans-serif;
+  background: radial-gradient(circle at center, #1e293b 0%, #020617 100%);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.game-console {
+  width: 90%;
+  max-width: 500px;
+  background: rgba(30, 41, 59, 0.7);
+  backdrop-filter: blur(12px);
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 30px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+
+h1 {
+  font-family: 'Orbitron', sans-serif;
+  text-align: center;
+  font-size: 1.5rem;
+  letter-spacing: 2px;
+  margin: 0 0 20px 0;
+  text-shadow: 0 0 10px rgba(255,255,255,0.2);
+}
+
+.vs { color: #64748b; font-size: 0.8em; }
+
+/* ARENA */
+.arena {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #0f172a;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 20px;
+  height: 140px;
+  border: 1px solid #334155;
+  position: relative;
+  overflow: hidden;
+}
+
+.fighter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100px;
+  z-index: 2;
+}
+
+.fighter-icon {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.fighter-icon svg { width: 100%; height: 100%; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3)); }
+.placeholder { font-size: 3rem; opacity: 0.2; font-family: 'Orbitron'; }
+
+.versus-badge {
+  font-family: 'Orbitron';
+  font-size: 1.5rem;
+  color: #334155;
+  font-weight: 900;
+}
+
+/* CARDS */
+.weapon-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.weapon-card {
+  background: linear-gradient(145deg, #1e293b, #0f172a);
+  border: 1px solid #334155;
+  border-radius: 12px;
+  padding: 10px;
+  cursor: pointer;
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.weapon-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--primary);
+  box-shadow: var(--neon-glow);
+}
+
+.card-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.weapon-logo { width: 48px; height: 48px; }
+
+span { font-weight: 600; font-size: 0.8rem; letter-spacing: 1px; color: #94a3b8; }
+
+/* CONTROLS */
+.btn-main {
+  width: 100%;
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 16px;
+  font-family: 'Orbitron';
+  font-weight: 700;
+  letter-spacing: 2px;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+}
+.btn-main:hover { background: #2563eb; }
+
+.status-screen {
+  background: rgba(0,0,0,0.3);
+  padding: 12px;
+  border-radius: 8px;
+  text-align: center;
+  font-family: 'Orbitron';
+  color: var(--accent);
+  margin-bottom: 20px;
+  border: 1px solid rgba(255,255,255,0.05);
+  min-height: 24px;
+}
+
+.hidden { display: none !important; }
+
+/* LOGS */
+.log-panel {
+  margin-top: 20px;
+  border-top: 1px solid #334155;
+  padding-top: 15px;
+}
+
+.log-panel h3 { font-size: 0.7rem; color: #64748b; margin-bottom: 10px; }
+
+.log-content {
+  font-family: 'Courier New', monospace;
+  font-size: 0.85rem;
+  color: #a5f3fc;
+  height: 100px;
+  overflow-y: auto;
+  white-space: pre-wrap;
+}
+
+/* --- ANIMATIONS --- */
+
+/* 1. GUN SHOOTS SNAKE */
+@keyframes shootRecoil {
+  0% { transform: translateX(0) rotate(0); }
+  20% { transform: translateX(10px) rotate(-10deg); }
+  100% { transform: translateX(0) rotate(0); }
+}
+@keyframes dieFade {
+  0% { transform: scale(1); opacity: 1; filter: grayscale(0); }
+  50% { transform: scale(0.8) rotate(90deg); filter: grayscale(1); opacity: 0.5; }
+  100% { transform: scale(0); opacity: 0; }
+}
+
+/* 2. WATER RUSTS GUN */
+@keyframes splashEffect {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.4); filter: brightness(1.5); }
+  100% { transform: scale(1); }
+}
+@keyframes rustEffect {
+  0% { filter: none; }
+  100% { filter: sepia(1) hue-rotate(-30deg) contrast(1.2); opacity: 0.4; transform: skewX(10deg); }
+}
+
+/* 3. SNAKE DRINKS WATER */
+@keyframes biteAttack {
+  0% { transform: translateX(0); }
+  50% { transform: translateX(40px) scale(1.1); }
+  100% { transform: translateX(0); }
+}
+@keyframes shrinkEffect {
+  0% { transform: scale(1); }
+  100% { transform: scale(0); opacity: 0; }
+}
+
+/* Utility classes for JS to toggle */
+.anim-shoot { animation: shootRecoil 0.4s ease-out; }
+.anim-die { animation: dieFade 0.8s forwards; }
+
+.anim-splash { animation: splashEffect 0.6s ease-out; }
+.anim-rust { animation: rustEffect 1s forwards; }
+
+.anim-bite { animation: biteAttack 0.6s ease-in-out; }
+.anim-shrink { animation: shrinkEffect 0.6s forwards; }
